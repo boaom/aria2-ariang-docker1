@@ -1,0 +1,36 @@
+{$DOMAIN} {
+  proxy / localhost:8080 {
+      transparent
+  }
+  log stdout
+  errors stdout
+  gzip
+}
+
+{$DOMAIN}/ui {
+  root /usr/local/www/aria2
+  timeouts none
+  gzip
+  log stdout
+  errors stdout
+}
+
+{$DOMAIN}/css {
+  root /usr/local/www/aria2/css
+  gzip
+}
+
+{$DOMAIN}/js {
+  root /usr/local/www/aria2/js
+  gzip
+}
+
+{$DOMAIN}/fonts {
+  root /usr/local/www/aria2/fonts
+  gzip
+}
+
+{$DOMAIN}/langs {
+  root /usr/local/www/aria2/langs
+  gzip
+}

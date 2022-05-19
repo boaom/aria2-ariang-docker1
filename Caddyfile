@@ -1,0 +1,27 @@
+#{
+#  auto_https off
+#}
+
+{$DOMAIN}
+
+redir /ui /ui/ 301
+redir /rclone /rclone/ 301
+
+route /rclone/* {
+  uri strip_prefix /rclone
+  reverse_proxy http://localhost:5572
+}
+
+route /ui/* {
+  uri strip_prefix /ui
+  root * /usr/local/www/aria2
+  file_server
+}
+
+reverse_proxy 127.0.0.1:8080
+reverse_proxy /jsonrpc 127.0.0.1:6800
+
+encode gzip
+log {
+  output stderr
+}
